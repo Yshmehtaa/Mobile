@@ -1,15 +1,20 @@
+Exploiting 
+Good reads: 
+https://www.varutra.com/root-detection-bypass-vulnerabilities-a-crucial-aspect-of-mobile-app-security/ 
+https://arz101.medium.com/android-pentesting-bypassing-root-detection-37729f571eda
+
+Mitigation
 Mitigation 
 
 root detection 
 sssl pining 
 code obfuscation 
-read/write permission on external 
+read/write permission on external file
 
 
+### Root Detection technique: 
 
-1. Root Detection technique: 
-
-Implement Advanced Root Detection Techniques
+1. Implement Advanced Root Detection Techniques
 Basic Root Detection involves checking for common root indicators (like the presence of su binary or rooting apps). 
 Root Detection Libraries: Use libraries like RootBeer, Google Play Integrity API, and SafetyNet for comprehensive root detection
 
@@ -27,6 +32,69 @@ Periodic Root Checks: Implement a background service that checks for root every 
 The Google Play Integrity API not only checks for rooting but also ensures app integrity. This is more secure than a local root check because it queries Google’s servers to verify the device and app.
 
 Good reads: 
-https://www.varutra.com/root-detection-bypass-vulnerabilities-a-crucial-aspect-of-mobile-app-security/ 
-https://arz101.medium.com/android-pentesting-bypassing-root-detection-37729f571eda
+https://www.appdome.com/how-to/mobile-app-security/jailbreak-root-detection/
+https://www.cryptomathic.com/news-events/blog/application-hardening-for-mobile-banking-apps-root-and-jailbreak-detection 
+
+
+###SSL Pinning Bypass: 
+
+
+1. Obfuscate the SSL Pinning Code
+To protect your SSL pinning logic from reverse engineering:
+Use ProGuard or R8 to obfuscate your SSL pinning code and prevent attackers from easily finding and modifying it.
+Obfuscate sensitive methods like:
+
+SSL validation checks.
+Certificate or public key storage.
+
+2. Detect Hooking Frameworks (Frida/Xposed)
+Frida and Xposed are commonly used by attackers to bypass SSL pinning by hooking into app functions. Detecting these frameworks can help you prevent SSL pinning bypasses.
+Look for the presence of Frida or Xposed modules at runtime and terminate the app or block critical functionality if detected.
+
+Good reads: 
+https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html 
+
+
+###Code obfuscation: 
+
+1. Enable ProGuard or R8 for Obfuscation
+ProGuard and R8 are official tools provided by Google to shrink, optimize, and obfuscate Android code.
+Both tools rename classes, methods, and variables, making the code more difficult to read and reverse-engineer.
+R8 is now the default in Android, as it is more powerful and efficient than ProGuard.
+
+2. Obfuscate the Manifest File
+Attackers often analyze the Android Manifest file to find key components like activities, services, and permissions.
+Use tools like DexProtector to obfuscate entries in the manifest file, hiding key information such as component names and intent filters.
+
+3. Obfuscate Resource Files
+In addition to code, resources such as XML layouts, strings, and assets can be analyzed during static analysis.
+Use resource shrinking (enabled via R8/ProGuard) to remove unused resources, and use string encryption for sensitive resource strings.
+
+4. Obfuscate Code Flow (Control Flow Obfuscation)
+Control Flow Obfuscation modifies the structure of the code in a way that makes it harder to follow the logical flow during reverse engineering.
+This makes static analysis more difficult because the control flow doesn't follow a standard, readable format.
+Tools like DashO or DexProtector offer control flow obfuscation features.
+
+Good reads: 
+https://proandroiddev.com/how-to-prevent-hackers-from-reverse-engineering-your-android-apps-2981661ab1c2 
+https://wiki.owasp.org/index.php/Technical_Risks_of_Reverse_Engineering_and_Unauthorized_Code_Modification 
+
+###read/write permission on external file 
+
+1. Granting unnecessary read/write permissions can expose sensitive data to other apps or even malicious entities. Android provides two permissions related to external storage:
+
+READ_EXTERNAL_STORAGE: Allows apps to read files from the external storage.
+WRITE_EXTERNAL_STORAGE: Allows apps to modify or delete files on external storage.
+Action Items:
+Minimize the use of WRITE_EXTERNAL_STORAGE:
+
+Try to avoid using WRITE_EXTERNAL_STORAGE unless absolutely necessary, especially on Android 10+ where Scoped Storage can handle many use cases without this permission.
+Request permissions dynamically (at runtime):
+
+On Android 6.0 (API level 23) and above, permissions must be requested at runtime rather than being automatically granted.
+Check and revoke permissions regularly:
+Use PermissionManager APIs to check the status of granted permissions and provide fallback solutions if permissions are not granted.
+
+Good reads: 
+https://owasp.org/www-project-mobile-top-10/2016-risks/m2-insecure-data-storage 
 
