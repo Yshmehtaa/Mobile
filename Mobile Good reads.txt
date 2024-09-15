@@ -4,7 +4,6 @@ https://www.varutra.com/root-detection-bypass-vulnerabilities-a-crucial-aspect-o
 https://arz101.medium.com/android-pentesting-bypassing-root-detection-37729f571eda
 
 Mitigation
-Mitigation 
 
 root detection 
 sssl pining 
