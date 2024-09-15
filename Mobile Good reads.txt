@@ -1,0 +1,32 @@
+Mitigation 
+
+root detection 
+sssl pining 
+code obfuscation 
+read/write permission on external 
+
+
+
+1. Root Detection technique: 
+
+Implement Advanced Root Detection Techniques
+Basic Root Detection involves checking for common root indicators (like the presence of su binary or rooting apps). 
+Root Detection Libraries: Use libraries like RootBeer, Google Play Integrity API, and SafetyNet for comprehensive root detection
+
+2. Check for System Partition Modifications
+Rooting often involves modifications to the system partition. By verifying the integrity of the system partition, you can identify rooted devices:
+Check for the existence of tampered files.
+Verify file signatures of critical system files like boot, init.rc, etc.
+
+3. Block Root Access at Runtime
+You can periodically check for root status throughout the app lifecycle instead of only checking during startup. If root access is detected at any point, restrict or block access to sensitive features and data.
+
+Periodic Root Checks: Implement a background service that checks for root every time a critical feature is accessed or periodically at intervals. 
+
+4. Integrity Check with Google Play Integrity API
+The Google Play Integrity API not only checks for rooting but also ensures app integrity. This is more secure than a local root check because it queries Google’s servers to verify the device and app.
+
+Good reads: 
+https://www.varutra.com/root-detection-bypass-vulnerabilities-a-crucial-aspect-of-mobile-app-security/ 
+https://arz101.medium.com/android-pentesting-bypassing-root-detection-37729f571eda
+
