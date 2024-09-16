@@ -97,3 +97,16 @@ Use PermissionManager APIs to check the status of granted permissions and provid
 Good reads: 
 https://owasp.org/www-project-mobile-top-10/2016-risks/m2-insecure-data-storage 
 
+~~~~~ 
+SSL pinning not implemented
+It is recommended to Implementing SSL certificate/ public key pinning can help to avoid this type of snooping. SSL Pinning is making sure the client checks the server’s certificate against a known copy of that certificate. Implement bundle your server’s SSL certificate inside your application, and make sure any SSL request first validates that the server’s certificate exactly matches the bundle’s certificate. Implement hardening techniques
+
+Good reads:
+https://www.nowsecure.com/blog/2017/06/15/certificate-pinning-for-android-and-ios-mobile-man-in-the-middle-attack-prevention/
+ 
+ 	
+Root detection is not properly implemented/ Root detection bypass
+It is recommended to implement root detection technique in the application. While installing the application verify if the device is rooted and accordingly allow the application to get installed in the mobile device. Ensure that the application does not work in the rooted phone. Implement hardening techniques.
+
+Good reads: 
+https://www.indusface.com/learning/how-to-implement-root-detection-in-android-applications/ 
