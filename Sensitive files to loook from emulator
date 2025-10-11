@@ -1,0 +1,35 @@
+Where to look on the emulator (paths & why)
+
+App-specific (most important)
+/data/data/<package>/ or /data/user/0/<package>/ — the app's private dir.
+Check subfolders:
+shared_prefs/ → XMLs with config/credentials
+databases/ → SQLite DBs (*.db)
+files/ → saved files, config dumps
+cache/ and app_webview/ → cached content
+lib/ → native .so libs
+no_backup/ → sometimes contains backups
+
+APK / installed app
+/data/app/<package>-*/base.apk — installed apk location (may vary)
+/system/app/ and /system/priv-app/ — system APKs
+
+External / user storage
+/sdcard/ or /storage/emulated/0/ — user files, exported logs, exported configs
+/sdcard/Android/data/<package>/ — app-scoped external files
+
+Temp & misc
+/data/local/tmp/ and /data/local/ — temporary files, often writable
+/cache/ — system/app caches
+/mnt/obb/ and /storage/ — OBB or other storage
+
+System / config / certs
+/system/etc/ — config files, sometimes embedded certs
+/etc/ — config on some images
+/vendor/ — vendor binaries
+
+Native / binary inspection
+/data/local/ and app lib/ for .so files to run strings / reverse
+
+Logs / runtime
+logcat (not a path) — runtime logs may leak secrets (use adb logcat)
