@@ -32,4 +32,16 @@ To reproduce this issue, follow the steps below.
 >android clipboard monitor
 
 
+##Javascript Enabled in Webview
+Impact: An attacker can inject malicious JavaScript code into the webview activity if its "setJavaScriptEnabled" attribute is set to "true". 
+
+Description: Webview is a web browser that can be built into an application. It is the most commonly used component in the Android ecosystem. It also leads to a number of potential vulnerabilities. JavaScript-enabled web content can expose applications to vulnerabilities like cross-site scripting (XSS). Such vulnerabilities could compromise sensitive user data or even lead to unauthorized access. Despite its extensive use and accessibility, implementing measures such as input validation is crucial to prevent these security issues.
+
+Recommendations: The following recommendations can help secure mobile applications against this vulnerability.
+Disable JavaScript execution if not necessary by setting the setJavascriptEnable() function to false. If JavaScript is necessary, only load content from the trusted servers using an encrypted channel such as HTTPS with certificate verification
+
+Reproduction Steps: To reproduce this issue, follow the steps below.
+1.	Navigate to AndroidManifest.xml file.
+2.	Navigate to com.ianacare.ianacare > util > AdvancedWebView.
+3.	Observe that "setJavaScriptEnable" is set to "true" for “package_name.util.AdvancedWebView”.
 
