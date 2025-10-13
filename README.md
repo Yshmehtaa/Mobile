@@ -8,3 +8,6 @@ $ frida --codeshare Q0120S/bypass-ssl-pinning -f YOUR_BINARY
 
 Another  way to bypass SSL Pinning is through download the js file and use that. 
 Good read: https://redfoxsec.com/blog/ssl-pinning-bypass-android-frida/
+
+Download the Script from:
+https://github.com/themalwarenews/frida_rootandsslbypass/tree/main
