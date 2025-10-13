@@ -12,6 +12,9 @@ Good read: https://redfoxsec.com/blog/ssl-pinning-bypass-android-frida/
 Download the Script from:
 https://github.com/themalwarenews/frida_rootandsslbypass/tree/main
 
+
+
+##Vulnerabilities.
 Mobile Application data handling (Clipboard)
 
 Impact: When typing data into an input field, the clipboard can be used to copy data. The clipboard is accessible system-wide and is, therefore, shared by apps. This sharing can be misused by malicious applications to obtain sensitive data that has been stored in the clipboard.
@@ -27,4 +30,6 @@ To reproduce this issue, follow the steps below.
 2.	Hook the ianacare application to Objection and explore command-
 >objection -g application_package_name explore
 >android clipboard monitor
+
+
 
